@@ -1,0 +1,8 @@
+monolog:
+    handlers:
+        blueScreen:
+            type: blue screen
+            level: critical
+            path: %kernel.logs_dir%
+            bubble: false
+            channels: ["channel"]
