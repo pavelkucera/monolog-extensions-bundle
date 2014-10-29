@@ -8,9 +8,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-
 class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBundle\Tests\TestCase
 {
+
     /** @var ContainerBuilder */
     private $container;
 
@@ -19,7 +19,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
 
     /** @var string */
     private $logDirectory;
-
 
     protected function setup()
     {
@@ -36,7 +35,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
         $this->container->setParameter('kernel.logs_dir', $this->logDirectory);
     }
 
-
     /**
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Monolog is not registered.
@@ -48,7 +46,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
 
         $containerBuilder->compile();
     }
-
 
     public function testEditsMonologConfiguration()
     {
@@ -63,7 +60,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
             'id' => 'kucera.monolog.blue_screen_handlers.blueScreen',
         ), $handlers['blueScreen']);
     }
-
 
     public function testSavesConfiguration()
     {
@@ -80,7 +76,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
         ), $handlers['blueScreen']);
     }
 
-
     public function testEditsOnlyBlueScreens()
     {
         $this->loadFixture('monolog.yml');
@@ -96,7 +91,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
         ), $handlers['main']);
     }
 
-
     public function testConvertsLevelParameter()
     {
         $this->loadFixture('monolog.yml');
@@ -106,7 +100,6 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
         $definition = $this->container->getDefinition('kucera.monolog.blue_screen_handlers.blueScreen');
         $this->assertSame(500, $definition->getArgument(2));
     }
-
 
     private function getConfig($extension)
     {
@@ -118,12 +111,10 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
         return $config;
     }
 
-
     private function compile()
     {
         $this->container->getCompiler()->compile($this->container);
     }
-
 
     /**
      * @param string $name
@@ -132,4 +123,5 @@ class KuceraMonologExtensionsExtensionTest extends \Kucera\MonologExtensionsBund
     {
         $this->yamlLoader->load($name);
     }
+
 }

@@ -13,9 +13,9 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-
 class KuceraMonologExtensionsExtension extends Extension implements PrependExtensionInterface
 {
+
     /**
      * Steals Monolog configuration, goes through handlers and adjusts config
      * of blue screen handlers.
@@ -44,7 +44,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         }
     }
 
-
     /**
      * @param array $configs
      * @param ContainerBuilder $container
@@ -61,7 +60,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
-
 
     /**
      * Transforms Monolog-like configuration of handlers into
@@ -89,7 +87,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         return array('handlers' => $config);
     }
 
-
     /**
      * Adjusts Monolog configuration to be valid by replacing 'blue screen' type by 'service'
      * and adding a service id.
@@ -113,7 +110,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         return array('handlers' => $config);
     }
 
-
     /**
      * @param ContainerBuilder $container
      * @param string $name
@@ -136,7 +132,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         $container->setDefinition($this->getHandlerName($name), $definition);
     }
 
-
     /**
      * @param $level
      * @return int
@@ -146,7 +141,6 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
         return is_int($level) ? $level : constant('Monolog\Logger::' . strtoupper($level));
     }
 
-
     /**
      * @param string $name
      * @return string
@@ -155,4 +149,5 @@ class KuceraMonologExtensionsExtension extends Extension implements PrependExten
     {
         return "kucera.monolog.blue_screen_handlers.$name";
     }
+
 }
