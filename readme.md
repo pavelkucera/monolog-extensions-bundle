@@ -60,3 +60,13 @@ monolog:
             bubble: true
 ```
 This works out of the box and also in production mode!
+
+## Tips
+
+### Log notices/warnings in production
+
+Use Symfony parameter `debug.error_handler.throw_at`: (see http://php.net/manual/en/function.error-reporting.php for possible values)
+```yml
+parameters:
+    debug.error_handler.throw_at: -1
+```
