@@ -70,3 +70,19 @@ Use Symfony parameter `debug.error_handler.throw_at`: (see http://php.net/manual
 parameters:
     debug.error_handler.throw_at: -1
 ```
+
+### Using Tracy\Debugger::dump
+
+To prevent forgotten dumps to appear on production you can simply change the mode like this:
+```php
+// AppKernel.php
+
+use Tracy\Debugger;
+
+public function __construct($environment, $debug)
+{
+    Debugger::$productionMode = $environment === 'prod';
+    parent::__construct($environment, $debug);
+}
+```
+
