@@ -7,7 +7,7 @@ services:
         abstract: true
         class: Kucera\Monolog\Handler\BlueScreenHandler
         arguments:
-            - @kucera.monolog.blue_screen
+            - '@kucera.monolog.blue_screen'
             - %kernel.logs_dir%/tracy
             - DEBUG
             - true
