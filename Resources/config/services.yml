@@ -1,14 +1,13 @@
 services:
     kucera.monolog.blue_screen:
         class: Tracy\BlueScreen
-        factory_class: Tracy\Debugger
-        factory_method: getBlueScreen
+        factory: [Tracy\Debugger, getBlueScreen]
 
     kucera.monolog.handler.blue_screen_handler_prototype:
         abstract: true
         class: Kucera\Monolog\Handler\BlueScreenHandler
         arguments:
-            - @kucera.monolog.blue_screen
+            - '@kucera.monolog.blue_screen'
             - %kernel.logs_dir%/tracy
             - DEBUG
             - true
